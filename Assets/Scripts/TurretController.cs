@@ -41,8 +41,7 @@ public class TurretController : MonoBehaviour
         // Fire Cannon
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var projectile = Instantiate(shellPrefab, shellSpawnPosition.position, shellPrefab.transform.rotation);
-            projectile.Launch(shellSpawnPosition.forward * force);
+            Instantiate(shellPrefab, shellSpawnPosition.position, shellSpawnPosition.rotation).Launch(shellSpawnPosition.forward * force * Time.deltaTime);
         }
     }
 }
