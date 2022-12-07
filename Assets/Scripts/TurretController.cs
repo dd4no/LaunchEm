@@ -17,9 +17,13 @@ public class TurretController : MonoBehaviour
     private float arcLimit = 60.0f;
 
     // Shell
-    public Shell shellPrefab;
-    public Transform shellSpawnPosition;
-    public float force = 100;
+    public GameObject shellPrefab;
+    public Transform launchPoint;
+    private float force = 5000f;
+
+    // Trajectory
+    public LineRenderer trajectoryLine;
+    private const int TRAJECTORY_POINTS = 10;
 
     void Start()
     {
@@ -41,7 +45,21 @@ public class TurretController : MonoBehaviour
         // Fire Cannon
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(shellPrefab, shellSpawnPosition.position, shellSpawnPosition.rotation).Launch(shellSpawnPosition.forward * force * Time.deltaTime);
+            Fire();
         }
+
+        UpdateTrajectory();
+    }
+
+    private void Fire()
+    {
+            var shell = Instantiate(shellPrefab, launchPoint.position, Quaternion.identity);
+            Rigidbody rb = shell.GetComponent<Rigidbody>();
+            rb.AddForce(launchPoint.forward * force, ForceMode.Impulse);
+    }
+
+    private void UpdateTrajectory()
+    {
+
     }
 }

@@ -5,12 +5,13 @@ using UnityEngine.UIElements;
 
 public class Shell : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody shellBody;
+    private float force = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        shellBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,8 +20,8 @@ public class Shell : MonoBehaviour
        
     }
 
-    public void Launch(Vector3 velocity)
+    public void Launch(Vector3 direction)
     {
-        rb.AddForce(velocity, ForceMode.Impulse);
+        shellBody.AddForce(direction * force, ForceMode.Impulse);
     }
 }
