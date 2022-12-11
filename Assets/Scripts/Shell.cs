@@ -5,23 +5,23 @@ using UnityEngine.UIElements;
 
 public class Shell : MonoBehaviour
 {
-    private Rigidbody shellBody;
-    private float force = 100f;
-
-    // Start is called before the first frame update
+    // Start
     void Start()
     {
-        shellBody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
+    // Update
     void Update()
     {
        
     }
 
-    public void Launch(Vector3 direction)
+    private void OnTriggerEnter(Collider other)
     {
-        shellBody.AddForce(direction * force, ForceMode.Impulse);
+        // Destroy on Ground Contact
+        if (other.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
