@@ -338,13 +338,20 @@ MonoBehaviour:
   - {fileID: 8703526228936539759, guid: c152ab34ef332354296b812250c1122d, type: 3}
   - {fileID: 1900102352552848322, guid: 5f0e8863d77308043be16d8568aa9df2, type: 3}
   - {fileID: 2834527160381523888, guid: ae663900c4d9f1b4889a598572d13621, type: 3}
-  powerups: []
+  powerups:
+  - {fileID: 3501649083150792727, guid: 2a337b52eb2b11d44a8b601b7e02f4f9, type: 3}
+  - {fileID: 4628579036975839598, guid: 35c58360a1e59584d9ec25cdf5aaf934, type: 3}
   rangeX: 260
-  startY: -3
+  underground: -3
+  inAirMin: 10
+  inAirMax: 30
   minRangeZ: 80
   maxRangeZ: 220
-  delay: 2
-  rate: 2
+  enemyDelay: 2
+  enemyRate: 2
+  powerupDelay: 10
+  powerupRate: 10
+  powerupDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &722077483
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 804670355}
   m_Layer: 0
-  m_Name: Setup
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
