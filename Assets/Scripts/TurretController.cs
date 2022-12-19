@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     // Unit Movement Speed
-    [SerializeField] private float movementSpeed = 3.0f;
+    [SerializeField] private float movementSpeed = 2.0f;
 
     // Body Rotation
     private float rotation = 0f;
@@ -18,11 +18,16 @@ public class TurretController : MonoBehaviour
     // Shell
     public GameObject shellPrefab;
     public Transform launchPoint;
-    [SerializeField, Min(1)] private float shellMass = 100;
-    [SerializeField, Min(1)] private float force = 2000;
+    [SerializeField, Min(1)] private float shellMass = 100f;
+    [SerializeField, Min(1)] private float force = 2000f;
 
     // Trajectory
     [SerializeField] private TrajectoryLine trajectory;
+
+    // Bullet
+    public GameObject bulletPrefab;
+    public Transform gunBarrel;
+    public float bulletVelocity = 40f;
 
 
     // Start
@@ -51,6 +56,12 @@ public class TurretController : MonoBehaviour
         {
             Fire();
         }
+
+        // Shoot Gun (Left Alt)
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Shoot();
+        }
     }
 
     // Fire Cannon
@@ -65,5 +76,12 @@ public class TurretController : MonoBehaviour
 
         // Fire Cannon
         rb.AddForce(launchPoint.forward * force, ForceMode.Impulse);
+    }
+
+    // Shoot Gun
+    private void Shoot()
+    {
+        var bullet = Instantiate(bulletPrefab, gunBarrel.position, Quaternion.identity);
+        bullet.transform.Translate(gunBarrel.forward * Time.deltaTime * bulletVelocity);
     }
 }
