@@ -3,17 +3,17 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     // Unit Movement Speed
-    [SerializeField] private float movementSpeed = 2.0f;
+    private float movementSpeed = 1.0f;
 
     // Body Rotation
     private float rotation = 0f;
-    [SerializeField] public float rotationRange = 55.0f;
+    private float rotationRange = 55.0f;
 
     // Barrel Pivot
     [SerializeField] private GameObject barrel;
     private float arc = 0f;
-    [SerializeField] public float arcLimitMin = 35.0f;
-    [SerializeField] public float arcLimitMax = 85.0f;
+    private float arcLimitMin = 35.0f;
+    private float arcLimitMax = 85.0f;
 
     // Shell
     public GameObject shellPrefab;
@@ -27,7 +27,6 @@ public class TurretController : MonoBehaviour
     // Bullet
     public GameObject bulletPrefab;
     public Transform gunBarrel;
-    public float bulletVelocity = 40f;
 
 
     // Start
@@ -82,6 +81,5 @@ public class TurretController : MonoBehaviour
     private void Shoot()
     {
         var bullet = Instantiate(bulletPrefab, gunBarrel.position, Quaternion.identity);
-        bullet.transform.Translate(gunBarrel.forward * Time.deltaTime * bulletVelocity);
     }
 }

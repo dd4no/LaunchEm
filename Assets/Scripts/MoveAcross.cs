@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveAcross : MonoBehaviour
@@ -23,8 +21,7 @@ public class MoveAcross : MonoBehaviour
 
     // Update
     void LateUpdate()
-    {
-        
-        transform.Translate(direction * Time.deltaTime * speed);  
+    {        
+        transform.Translate(speed * Time.deltaTime * direction);  
     }
 }

@@ -172,19 +172,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92dea751e0fe1734ba8fdc9a924c9bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  rotationRange: 60
   barrel: {fileID: 722077483}
-  arcLimitMin: 35
-  arcLimitMax: 85
   shellPrefab: {fileID: 6248500974284631913, guid: d12c5cc98fb1e3c4ca205464c819b39d, type: 3}
   launchPoint: {fileID: 1577640037}
   shellMass: 30
   force: 2000
   trajectory: {fileID: 385492696}
-  bulletPrefab: {fileID: 2917521118183184116, guid: dcac3ec4faef8ed439ece9bb31080c0f, type: 3}
+  bulletPrefab: {fileID: 8834716981707109178, guid: d2c23902f5dca284ea041fa661c72e90, type: 3}
   gunBarrel: {fileID: 1789140490}
-  bulletVelocity: 40
 --- !u!114 &385492696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,16 +340,6 @@ MonoBehaviour:
   powerups:
   - {fileID: 3501649083150792727, guid: 2a337b52eb2b11d44a8b601b7e02f4f9, type: 3}
   - {fileID: 4628579036975839598, guid: 35c58360a1e59584d9ec25cdf5aaf934, type: 3}
-  rangeX: 260
-  underground: -3
-  inAirMin: 10
-  inAirMax: 30
-  minRangeZ: 80
-  maxRangeZ: 220
-  enemyDelay: 2
-  enemyRate: 2
-  powerupDelay: 10
-  powerupRate: 10
   powerupDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &722077483
 GameObject:
@@ -1056,8 +1041,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038734015}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.5, y: -4.28, z: -14.89}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 15.5, y: -5.316, z: -14.89}
+  m_LocalScale: {x: 2, y: 3.036, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2081182561}
@@ -1151,7 +1136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081182560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.81, y: 10.18, z: 19.03}
+  m_LocalPosition: {x: -18.81, y: 12.03, z: 19.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

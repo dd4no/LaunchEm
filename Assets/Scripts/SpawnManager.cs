@@ -8,22 +8,19 @@ public class SpawnManager : MonoBehaviour
     private float[] powerupStarts = {-400f, 400f};
 
     // X Range
-    public float rangeX = 240f;
+    private float rangeX = 240f;
 
-    // Y Range
-    public float underground = -3f;
-    public float inAirMin = 10f;
-    public float inAirMax = 30f;
+    // Y Positions
+    private float underground = -3f;
+    private float inAir = 8f;
 
     // Z Range
-    public float minRangeZ = 80f;
-    public float maxRangeZ = 220f;
+    private float minRangeZ = 80f;
+    private float maxRangeZ = 220f;
 
     // Spawn Rate
-    public float enemyDelay = 2f;
-    public float enemyRate = 2f;
-    public float powerupDelay = 10f;
-    public float powerupRate = 10f;
+    private float enemyDelay = 3f;
+    private float powerupDelay = 20f;
 
     // Powerup Direction
     public Vector3 powerupDirection;
@@ -32,8 +29,11 @@ public class SpawnManager : MonoBehaviour
     // Start
     void Start()
     {
-        InvokeRepeating("SpawnEnemy", enemyDelay, enemyRate);
-        InvokeRepeating("SpawnPowerup", powerupDelay, powerupRate);
+        // Spawn Enemies
+        InvokeRepeating("SpawnEnemy", enemyDelay, Random.Range(5,15));
+
+        // Spawn Powerups
+        InvokeRepeating("SpawnPowerup", powerupDelay, Random.Range(10, 30));
     }
 
     // Update
@@ -45,28 +45,40 @@ public class SpawnManager : MonoBehaviour
     // Spawn Enemy
     private void SpawnEnemy()
     {
+        // Generate Random Enemy
         int enemyIndex = Random.Range(0, enemies.Length);
+
+        // Generate Random Position
         Vector3 spawnPosition = new Vector3(Random.Range(-rangeX, rangeX), underground, Random.Range(minRangeZ, maxRangeZ));
+
+        // Spawn Enemy
         Instantiate(enemies[enemyIndex], spawnPosition, enemies[enemyIndex].transform.rotation);
     }
 
     // Spawn Powerup
     private void SpawnPowerup()
     {
+        // Generate Random Powerup
         int powerupIndex = Random.Range(0, powerups.Length);
+
+        // Randomize Starting Position on Right or Left
         int powerupStartIndex = Random.Range(0, 2);
+        
+        // Generate Random Position
+        Vector3 spawnPosition = new Vector3(powerupStarts[powerupStartIndex], inAir, Random.Range(minRangeZ, maxRangeZ));
 
-        Vector3 spawnPosition = new Vector3(powerupStarts[powerupStartIndex], Random.Range(inAirMin, inAirMax), Random.Range(minRangeZ, maxRangeZ));
-
+        // If Starting Position Index = 0, Move Left to Right
         if (powerupStartIndex == 0)
         {
             powerupDirection = Vector3.right;
         }
+        // Otherwise, Move Right to Left
         else
         {
             powerupDirection = Vector3.left;
         }
 
+        // Spawn Powerup
         Instantiate(powerups[powerupIndex], spawnPosition, powerups[powerupIndex].transform.rotation);
     }
 }
