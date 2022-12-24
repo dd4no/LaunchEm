@@ -12,7 +12,7 @@ public class SpawnManager : MonoBehaviour
 
     // Y Positions
     private float underground = -3f;
-    private float inAir = 8f;
+    private float inAir = 6f;
 
     // Z Range
     private float minRangeZ = 80f;

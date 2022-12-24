@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Enemy
+  - Powerup
+  - Blue
+  - Green
+  - Red
   layers:
   - Default
   - TransparentFX
