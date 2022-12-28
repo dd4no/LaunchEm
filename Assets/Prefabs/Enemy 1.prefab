@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7612975839027818005}
   - component: {fileID: 2309661011626861809}
   - component: {fileID: -599665430485116271}
+  - component: {fileID: 8156815853227886273}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Enemy
+  m_TagString: Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 83c7864a490db9e4483937d596540405, type: 2}
+  - {fileID: 2100000, guid: ea7deaa2314a91643984587fb8430848, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,3 +113,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   readyPosition: 2.5
+--- !u!114 &8156815853227886273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703526228936539759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ac8d9e0f1d21044ab42710ee10b3ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreenCounterText: {fileID: 0}
+  BlueCounterText: {fileID: 0}
+  RedCounterText: {fileID: 0}
+  PowerupCounterText: {fileID: 0}
+  GreenCount: 0
+  BlueCount: 0
+  RedCount: 0
+  PowerupCount: 0
+  TotalCount: 0

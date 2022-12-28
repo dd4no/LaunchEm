@@ -15,25 +15,36 @@ public class Collide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Destroy Shell and Target Object on Collision
+        // Destroy Projectile
         Destroy(gameObject);
 
         // On Ground Contact Create Crater
         if (other.CompareTag("Ground") )
         {
-
-        }
-
-        // On Enemy Collision Create Explosion and Slime Pool
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject);
+            return;
         }
 
         // On Powerup Collision Create Explosion
         if (other.CompareTag("Powerup"))
-        {
-            Destroy(other.gameObject);
+        { 
+            
         }
+
+        // On Enemy Collision Create Explosion and Slime Pool
+        if (other.CompareTag("Green"))
+        {
+
+        }
+        if (other.CompareTag("Blue"))
+        {
+
+        }
+        if (other.CompareTag("Red"))
+        {
+
+        }
+
+        // Destroy Target
+        Destroy(other.gameObject);
     }
 }
