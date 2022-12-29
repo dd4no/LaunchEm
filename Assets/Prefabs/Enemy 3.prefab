@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6266871714347221357}
   m_Layer: 0
   m_Name: Enemy 3
-  m_TagString: Green
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,12 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ac8d9e0f1d21044ab42710ee10b3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GreenCounterText: {fileID: 0}
-  BlueCounterText: {fileID: 0}
-  RedCounterText: {fileID: 0}
-  PowerupCounterText: {fileID: 0}
-  GreenCount: 0
-  BlueCount: 0
-  RedCount: 0
-  PowerupCount: 0
-  TotalCount: 0
+  gameManager: {fileID: 0}
