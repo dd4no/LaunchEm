@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
+    public GameManager gameManager;
+
     // Unit Movement Speed
     private float movementSpeed = 1.0f;
 
@@ -32,6 +34,8 @@ public class TurretController : MonoBehaviour
     // Start
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
     }
 
     // Update
@@ -75,6 +79,7 @@ public class TurretController : MonoBehaviour
 
         // Fire Cannon
         rb.AddForce(launchPoint.forward * force, ForceMode.Impulse);
+        gameManager.shotsFired++;
     }
 
     // Shoot Gun

@@ -1,67 +1,158 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // ---------- Variables ----------
+
     // Counters
-    public int greenScore;
-    public int blueScore;
-    public int redScore;
-    public int powerupScore;
-    public int totalScore;
+    public int greenCount;
+    public int blueCount;
+    public int redCount;
+    public int powerUpCount;
+    public int shotsFired;
+    public int totalEnemies;
+
+    // Score
+    public int greenPoints;
+    public int bluePoints;
+    public int redPoints;
+    public int totalPoints;
+    public double accuracy;
+
+    // Multiplier
+    public int powerUpMultiplier;
+    public int powerUpLength;
+    public bool poweredUp;
+    public bool bonus;
 
     // Score Displays
-    public TextMeshProUGUI greenScoreText;
-    public TextMeshProUGUI blueScoreText;
-    public TextMeshProUGUI redScoreText;
-    public TextMeshProUGUI powerupScoreText;
-    public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI greenCountText;
+    public TextMeshProUGUI greenPointsText;
+    public TextMeshProUGUI blueCountText;
+    public TextMeshProUGUI bluePointsText;
+    public TextMeshProUGUI redCountText;
+    public TextMeshProUGUI redPointsText;
+    public TextMeshProUGUI multiplierText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI hitsText;
+    public TextMeshProUGUI shotsText;
+    public TextMeshProUGUI accuracyText;
 
-    // Start is called before the first frame update
+    // ---------- Start ----------
     void Start()
     {
-        
+        // Initialize Counts
+        greenCount = 0;
+        blueCount = 0;
+        redCount = 0;
+        powerUpCount = 0;
+        shotsFired = 0;
+        totalEnemies = 0;
+
+        // Initialize Score
+        greenPoints = 0;
+        bluePoints = 0;
+        redPoints = 0;
+        totalPoints = 0;
+        accuracy = 0;
+
+        // Set Multiplier
+        powerUpMultiplier = 2;
+        powerUpLength = 20;
+        poweredUp = false;
+        bonus = false;
+
+        // Intialize Display
+        DisplayScore();
     }
 
-    // Update is called once per frame
+    // ---------- Update ----------
     void Update()
     {
-        
+        if (shotsFired > 0)
+        {
+            accuracy = Math.Round((totalEnemies * 100f / shotsFired),2);
+        }
+        if (poweredUp)
+        {
+            multiplierText.text = $"X{powerUpMultiplier}";
+        }
+        if (!poweredUp)
+        {
+            multiplierText.text = "";
+        }
+
+        DisplayScore();
     }
 
-    public void UpdateCount(string enemy)
+    // ---------- Scoring ----------
+    public void UpdateScore(string enemy, int points)
     {
+        // Check for Bonus
+        if (bonus)
+        {
+            points = points * powerUpMultiplier;
+        }
+
+        // Score Enemy Count and Points 
         switch (enemy)
         {
             case "Green":
-                greenScore++;
-                greenScoreText.text = "Green Enemies: " + greenScore;
-                Debug.Log("Green: " + greenScore);
+                greenCount++;
+                greenPoints = greenPoints + points;
                 break;
+
             case "Blue":
-                blueScore++;
-                blueScoreText.text = "Blue Enemies: " + blueScore;
-                Debug.Log("Blue: " + blueScore);
+                blueCount++;
+                bluePoints = bluePoints + points;
+            break;
 
-                break;
             case "Red":
-                redScore++;
-                redScoreText.text = "Red Enemies: " + redScore;
-                Debug.Log("Red: " + redScore);
+                redCount++;
+                redPoints = redPoints + points;
+            break;
 
-                break;
             case "Powerup":
-                powerupScore++;
-                powerupScoreText.text = "Powerups: " + powerupScore;
-                Debug.Log("Green: " + powerupScore);
-
-                break;
+                powerUpCount++;
+                StartCoroutine(PowerUpCountdown());
+            break;
         }     
 
-        totalScore++;
-        totalScoreText.text = "Total Enemies: " + totalScore;
+        // Add to Total Count and Total Points
+        totalEnemies++;
+        totalPoints = totalPoints + points;
+    }
 
+    // ---------- PowerUp ----------
+    IEnumerator PowerUpCountdown()
+    {
+        poweredUp = true;
+        bonus = true;
+
+        yield return new WaitForSeconds(powerUpLength);
+
+        bonus = false;
+        poweredUp = false;
+    }
+
+    // ---------- Display ----------
+    public void DisplayScore()
+    {
+        // Counts
+        greenCountText.text = $"{greenCount}";
+        blueCountText.text = $"{blueCount}";
+        redCountText.text = $"{redCount}";
+        hitsText.text = $"{totalEnemies}";
+        shotsText.text = $"{shotsFired}";
+
+        // Scores
+        greenPointsText.text = $"{greenPoints}";
+        bluePointsText.text = $"{bluePoints}";
+        redPointsText.text = $"{redPoints}";
+        scoreText.text = $"{totalPoints}";
+        accuracyText.text = $"{accuracy}%";
     }
 }
