@@ -16,7 +16,7 @@ public class MoveAcross : MonoBehaviour
 
     private void Awake()
     {
-        speed = Random.Range(30f, 100f);
+        speed = Random.Range(40f, 80f);
     }
 
     // Update

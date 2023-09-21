@@ -5,7 +5,7 @@ public class TurretController : MonoBehaviour
     public GameManager gameManager;
 
     // Unit Movement Speed
-    private float movementSpeed = 1.0f;
+    private float movementSpeed = 0.8f;
 
     // Body Rotation
     private float rotation = 0f;
