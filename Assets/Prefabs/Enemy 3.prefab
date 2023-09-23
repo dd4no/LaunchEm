@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2771217300599534043}
   - component: {fileID: -2757309460506659754}
   - component: {fileID: 6266871714347221357}
+  - component: {fileID: -4192296497816303717}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Red
@@ -127,3 +128,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  greenPoints: 10
+  bluePoints: 25
+  redPoints: 50
+  powerUp: 2
+--- !u!114 &-4192296497816303717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834527160381523888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d68ba91d038b94594fb9294e2170cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  attackPosition: 2.5
+  timeUntilEscape: 10
+  escapeNow: 0

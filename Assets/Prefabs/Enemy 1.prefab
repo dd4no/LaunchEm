@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2125908911016482557}
   - component: {fileID: 7612975839027818005}
   - component: {fileID: 2309661011626861809}
-  - component: {fileID: -599665430485116271}
   - component: {fileID: 8156815853227886273}
+  - component: {fileID: 7051697855220266583}
+  - component: {fileID: -8183388511477403070}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Green
@@ -99,20 +100,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: -0.055749513, y: 0.09280701, z: 0.012754536}
---- !u!114 &-599665430485116271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8703526228936539759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec77f63573f80b14e947b4dbb24a8798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  readyPosition: 2.5
 --- !u!114 &8156815853227886273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +117,31 @@ MonoBehaviour:
   bluePoints: 25
   redPoints: 50
   powerUp: 2
+--- !u!114 &7051697855220266583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703526228936539759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eea848d5b6814bafd9d3844f739e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8183388511477403070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8703526228936539759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d68ba91d038b94594fb9294e2170cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  attackPosition: 2.5
+  timeUntilEscape: 20
+  escapeNow: 0
