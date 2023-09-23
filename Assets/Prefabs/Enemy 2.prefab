@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6274760254297082351}
   - component: {fileID: 1666614871673560037}
   - component: {fileID: 4608838779507889427}
-  - component: {fileID: 8036704184082659002}
   - component: {fileID: 1142453118330239766}
   - component: {fileID: 5969268020520668145}
+  - component: {fileID: 6018589166972974080}
   m_Layer: 0
   m_Name: Enemy 2
   m_TagString: Blue
@@ -100,20 +100,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8036704184082659002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900102352552848322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec77f63573f80b14e947b4dbb24a8798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  readyPosition: 2.5
 --- !u!114 &1142453118330239766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,5 +131,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackPosition: 2.5
-  timeUntilEscape: 15
+  timeUntilEscape: 10
   escapeNow: 0
+--- !u!114 &6018589166972974080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900102352552848322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eea848d5b6814bafd9d3844f739e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

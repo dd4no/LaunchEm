@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4808916811786451708}
   - component: {fileID: 8079133227426254146}
   - component: {fileID: 2771217300599534043}
-  - component: {fileID: -2757309460506659754}
   - component: {fileID: 6266871714347221357}
   - component: {fileID: -4192296497816303717}
+  - component: {fileID: -5937731260878086912}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Red
@@ -101,20 +101,6 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2757309460506659754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2834527160381523888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec77f63573f80b14e947b4dbb24a8798, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  readyPosition: 2.5
 --- !u!114 &6266871714347221357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,5 +132,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackPosition: 2.5
-  timeUntilEscape: 10
+  timeUntilEscape: 7
   escapeNow: 0
+--- !u!114 &-5937731260878086912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834527160381523888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2eea848d5b6814bafd9d3844f739e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

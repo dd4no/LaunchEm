@@ -143,5 +143,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   attackPosition: 2.5
-  timeUntilEscape: 20
+  timeUntilEscape: 15
   escapeNow: 0
