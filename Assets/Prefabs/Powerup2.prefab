@@ -126,11 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ac8d9e0f1d21044ab42710ee10b3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   greenPoints: 10
   bluePoints: 25
   redPoints: 50
-  powerUp: 2
+  multiplier: 2
 --- !u!114 &6013891706656663241
 MonoBehaviour:
   m_ObjectHideFlags: 0

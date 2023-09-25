@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
     // ---------- Objects ----------
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     // ---------- Variables ----------
     public int greenPoints = 10;
     public int bluePoints = 25;
     public int redPoints = 50;
-    public int powerUp = 2;
+    public int multiplier = 2;
 
     // ---------- Start ----------
     private void Start()

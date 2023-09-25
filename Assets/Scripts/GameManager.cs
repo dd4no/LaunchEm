@@ -8,25 +8,25 @@ public class GameManager : MonoBehaviour
     // ---------- Variables ----------
 
     // Counters
-    public int greenCount;
-    public int blueCount;
-    public int redCount;
-    public int powerUpCount;
+    private int greenCount;
+    private int blueCount;
+    private int redCount;
+    private int powerUpCount;
     public int shotsFired;
-    public int totalEnemies;
+    private int totalEnemies;
 
     // Score
-    public int greenPoints;
-    public int bluePoints;
-    public int redPoints;
-    public int totalPoints;
-    public double accuracy;
+    private int greenPoints;
+    private int bluePoints;
+    private int redPoints;
+    private int totalPoints;
+    private double accuracy;
 
     // Multiplier
-    public int powerUpMultiplier;
-    public int powerUpLength;
-    public bool poweredUp;
-    public bool bonus;
+    private int powerUpMultiplier;
+    private int powerUpLength;
+    private bool poweredUp;
+    private bool bonus;
 
     // Score Displays
     public TextMeshProUGUI greenCountText;

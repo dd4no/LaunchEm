@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2771217300599534043}
   - component: {fileID: 6266871714347221357}
   - component: {fileID: -4192296497816303717}
-  - component: {fileID: -5937731260878086912}
   m_Layer: 0
   m_Name: Enemy 3
   m_TagString: Red
@@ -134,15 +133,6 @@ MonoBehaviour:
   attackPosition: 2.5
   timeUntilEscape: 7
   escapeNow: 0
---- !u!114 &-5937731260878086912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2834527160381523888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2eea848d5b6814bafd9d3844f739e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemyBullet: {fileID: 8834716981707109178, guid: 417f2a7978f6117408d5e5e8ea7a7e3f, type: 3}
+  shotFired: 0
+  shotDelay: 5

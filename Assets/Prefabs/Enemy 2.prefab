@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4608838779507889427}
   - component: {fileID: 1142453118330239766}
   - component: {fileID: 5969268020520668145}
-  - component: {fileID: 6018589166972974080}
   m_Layer: 0
   m_Name: Enemy 2
   m_TagString: Blue
@@ -133,15 +132,6 @@ MonoBehaviour:
   attackPosition: 2.5
   timeUntilEscape: 10
   escapeNow: 0
---- !u!114 &6018589166972974080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900102352552848322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2eea848d5b6814bafd9d3844f739e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemyBullet: {fileID: 8834716981707109178, guid: 417f2a7978f6117408d5e5e8ea7a7e3f, type: 3}
+  shotFired: 0
+  shotDelay: 8
