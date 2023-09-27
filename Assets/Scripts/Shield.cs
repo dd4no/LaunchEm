@@ -1,15 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shield : MonoBehaviour
 {
-    public int hitPoints = 10;
+    public float hitPoints = 10;
+    public Slider sliderBar;
+    public TextMeshProUGUI gameOverText;
 
     // Start 
     void Start()
     {
         hitPoints = 10;
+        sliderBar.value = hitPoints;
     }
 
     // Update 
@@ -17,6 +20,11 @@ public class Shield : MonoBehaviour
     {
         if (hitPoints < 0) 
         {
+            gameOverText.text = "GAME OVER";
+        }
+        else
+        {
+            gameOverText.text = "";
         }
         
     }
@@ -24,5 +32,6 @@ public class Shield : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {        
         hitPoints--;
+        sliderBar.value = hitPoints;
     }
 }
