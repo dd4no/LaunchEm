@@ -4,11 +4,14 @@ using UnityEngine.UI;
 
 public class Shield : MonoBehaviour
 {
+    // Hit Points
     public float hitPoints = 10;
 
+    // Health Bar
     public Slider slider;
     public Image sliderFill;
 
+    // Display Text
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI shieldText;
 
@@ -21,40 +24,49 @@ public class Shield : MonoBehaviour
 
     // Update 
     void Update()
-    {
-  
+    {  
         gameOverText.text = "";
 
+        // End Game on Final Hit
         if (hitPoints < 0) 
         {
-            // Game Over Text
+            // Display Text
             gameOverText.text = "GAME OVER";
+
+            // End Game
             // GameOver();
         }        
     }
 
-    private void OnTriggerEnter(Collider other)
+    // Detect Hit
+    private void OnCollisionEnter(Collision collision)
     {        
-        hitPoints--;
-        slider.value = hitPoints;
-
-        if (hitPoints <= 7 && hitPoints >= 4)
+        // Detect Enemy Shots Only
+        if (collision.gameObject.tag == "EnemyFire") 
         {
-            // Yellow
-            sliderFill.color = Color.yellow;
-        }
+            // Take Damage
+            hitPoints--;
 
-        if (hitPoints <= 3 && hitPoints >= 1)
-        {
-            // Red
-            sliderFill.color = Color.red;
-        }
+            // Indicate Damage on Health Bar
+            slider.value = hitPoints;
 
-        if (hitPoints == 0)
-        {
-            // Hide
-            slider.gameObject.SetActive(false);
-            shieldText.gameObject.SetActive(false);
+            // Change Color as Damage Increases
+            if (hitPoints <= 7 && hitPoints >= 4)
+            {
+                // Yellow
+                sliderFill.color = Color.yellow;
+            }
+            if (hitPoints <= 3 && hitPoints >= 1)
+            {
+                // Red
+                sliderFill.color = Color.red;
+            }
+            if (hitPoints == 0)
+            {
+                // Hide Health Bar on Last Hit
+                slider.gameObject.SetActive(false);
+                shieldText.gameObject.SetActive(false);
+            }
         }
     }
 }
