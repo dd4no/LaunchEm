@@ -12,6 +12,7 @@ TagManager:
   - Red
   - Shield
   - EnemyFire
+  - Shell
   layers:
   - Default
   - TransparentFX
