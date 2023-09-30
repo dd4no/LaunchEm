@@ -12,29 +12,31 @@ public class Shield : MonoBehaviour
     public Image sliderFill;
 
     // Display Text
-    public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI shieldText;
+    public TextMeshProUGUI gameOverText;
+
+    // End of Game
+    public GameObject scoreScreen;
+    public GameObject gameOverScreen;
+    public bool gameOver;
 
     // Start 
     void Start()
     {
+        gameOver = false;
         hitPoints = 10;
         slider.value = hitPoints;
     }
 
     // Update 
     void Update()
-    {  
-        gameOverText.text = "";
-
+    {
         // End Game on Final Hit
-        if (hitPoints < 0) 
+        if (hitPoints < 0)
         {
-            // Display Text
-            gameOverText.text = "GAME OVER";
-
             // End Game
-            // GameOver();
+            GameOver();
+
         }        
     }
 
@@ -68,5 +70,18 @@ public class Shield : MonoBehaviour
                 shieldText.gameObject.SetActive(false);
             }
         }
+    }
+
+    // End Game
+    private void GameOver()
+    {
+        // End Game
+        gameOver = true;
+
+        // Hide Score Screen
+        scoreScreen.gameObject.SetActive(false);
+
+        // Show Game Over Screen
+        gameOverScreen.gameObject.SetActive(true);
     }
 }
