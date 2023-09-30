@@ -3,6 +3,7 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     public GameManager gameManager;
+    public Shield shield;
 
     // Unit Movement Speed
     private float movementSpeed = 0.8f;
@@ -41,29 +42,36 @@ public class TurretController : MonoBehaviour
     // Update
     void Update()
     {
-        // Rotate Turret (Left & Right Arrows)
-        rotation += Input.GetAxis("Horizontal") * movementSpeed;
-        rotation = Mathf.Clamp(rotation, -rotationRange, rotationRange);
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotation, transform.localEulerAngles.z);
+        if (!shield.gameOver)
+        {
+            // Rotate Turret (Left & Right Arrows)
+            rotation += Input.GetAxis("Horizontal") * movementSpeed;
+            rotation = Mathf.Clamp(rotation, -rotationRange, rotationRange);
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotation, transform.localEulerAngles.z);
         
-        // Pivot Cannon Barrel (Up & Down Arrows)
-        arc += Input.GetAxis("Vertical") * movementSpeed;
-        arc = Mathf.Clamp(arc, arcLimitMin, arcLimitMax);
-        barrel.transform.localEulerAngles = new Vector3(arc, transform.localEulerAngles.x, transform.localEulerAngles.x);
+            // Pivot Cannon Barrel (Up & Down Arrows)
+            arc += Input.GetAxis("Vertical") * movementSpeed;
+            arc = Mathf.Clamp(arc, arcLimitMin, arcLimitMax);
+            barrel.transform.localEulerAngles = new Vector3(arc, transform.localEulerAngles.x, transform.localEulerAngles.x);
 
-        // Show Trajectory       
-        trajectory.ShowTrajectory(launchPoint.position, launchPoint.forward * force / shellMass);      
+            // Show Trajectory       
+            trajectory.ShowTrajectory(launchPoint.position, launchPoint.forward * force / shellMass);      
 
-        // Fire Cannon  (Space Bar)
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Fire();
+            // Fire Cannon  (Space Bar)
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Fire();
+            }
+
+            // Shoot Gun (Left Alt)
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                Shoot();
+            }
         }
-
-        // Shoot Gun (Left Alt)
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        else
         {
-            Shoot();
+            gameObject.SetActive(false);
         }
     }
 

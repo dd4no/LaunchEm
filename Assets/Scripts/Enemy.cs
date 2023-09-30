@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    // Player Shield
+    private Shield shield;
+
     // Movement Rate
     private float speed = 5f;
 
@@ -24,17 +27,25 @@ public class Enemy : MonoBehaviour
     private bool shotFired;
     public int shotDelay;
 
-
+    
     // Start
     void Start()
     {
-
+        // Get Player Shield
+        shield = GameObject.Find("Shield").GetComponent<Shield>();
     }
 
     // Update
     void Update()
     {
-        if (!escapeNow)
+        // Destroy Enemy when Game Over
+        if (shield.gameOver)
+        {
+            Destroy(gameObject);
+        }
+
+        // Otherwise Rise, Attack, and Escape
+        else if (!escapeNow)
         {
             Rise();
         }
@@ -42,7 +53,6 @@ public class Enemy : MonoBehaviour
         {
             Sink();
         }
-
     }
 
     // Rise from Underground
@@ -66,7 +76,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    // Shoot Gun
+    // Attack
     private void Shoot()
     {
         if (!shotFired)
@@ -79,7 +89,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Sink Below Ground
+    // Escape Below Ground
     private void Sink()
     {
         // Flag as Time to Escape    

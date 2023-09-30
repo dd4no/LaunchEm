@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] powerups;
 
+    public Shield shield;
+
     // ---------- Spawn Location Ranges ----------
 
     // X
@@ -41,7 +43,11 @@ public class SpawnManager : MonoBehaviour
     // ---------- Update ----------
     void Update()
     {
-        
+        // Stop Spawning when Game Over
+        if (shield.gameOver)
+        { 
+            CancelInvoke();
+        }        
     }
 
     // ---------- Spawn Enemy ----------
