@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 60f;
+    private float speed = 100f;
+    private float zRange = 200f;
     public Transform gun;
     private Vector3 direction;
 
@@ -20,7 +21,7 @@ public class Bullet : MonoBehaviour
         // Move Bullet Forward from Gun Barrel in Direction when Fired
         transform.Translate(speed * Time.deltaTime * direction);
 
-        if (transform.position.z > 240)
+        if (transform.position.z > zRange)
         {
             Destroy(gameObject);
         }

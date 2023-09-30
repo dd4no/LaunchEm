@@ -20,6 +20,18 @@ public class Counter : MonoBehaviour
    // Detect Hit
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            if (gameObject.tag == "Powerup")
+            {
+                gameManager.UpdateScore("Powerup", 0);
+            }
+
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+
+            return;
+        }
         if (collision.gameObject.tag != "EnemyFire")
         {
             if (gameObject.tag =="Green")
@@ -38,6 +50,7 @@ public class Counter : MonoBehaviour
             {
                 gameManager.UpdateScore("Powerup", 0);
             }
+
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

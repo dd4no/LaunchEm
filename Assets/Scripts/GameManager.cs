@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private int powerUpLength;
     private bool poweredUp;
     private bool bonus;
+    public int bonusPoints;
 
     // Score Displays
     public TextMeshProUGUI greenCountText;
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
         powerUpLength = 20;
         poweredUp = false;
         bonus = false;
+        bonusPoints = 0;
 
         // Intialize Display
         DisplayScore();
@@ -94,7 +96,11 @@ public class GameManager : MonoBehaviour
         // Check for Bonus
         if (bonus)
         {
+            // Multiply Score
             points = points * powerUpMultiplier;
+
+            // Track Bonus Points
+            bonusPoints = points * powerUpMultiplier;
         }
 
         // Score Enemy Count and Points 
