@@ -5,31 +5,40 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // ---------- Variables ----------
+    // Point Values
+    public int greenValue = 10;
+    public int blueValue = 25;
+    public int redValue = 50;
+    public int multiplierValue = 2;
 
     // Counters
-    private int greenCount;
-    private int blueCount;
-    private int redCount;
-    private int powerUpCount;
-    public int shotsFired;
-    private int totalEnemies;
+    private int greenCount =0;
+    private int blueCount =0;
+    private int redCount = 0;
+    private int multiplierCount = 0;
+    private int totalEnemies = 0;
+    public int shotsFired = 0;
 
     // Score
-    private int greenPoints;
-    private int bluePoints;
-    private int redPoints;
-    private int totalPoints;
-    private double accuracy;
+    private int greenPoints = 0;
+    private int bluePoints = 0;
+    private int redPoints = 0;
+    private int bonusPoints = 0;
+    private int totalPoints = 0;
+    private double accuracy = 0;
 
     // Multiplier
-    private int powerUpMultiplier;
-    private int powerUpLength;
+    private int powerUpLength = 20;
     private bool poweredUp;
-    private bool bonus;
-    public int bonusPoints;
+    private bool bonusActive;
 
-    // Score Displays
+    // Final Score
+    private double accuracyAdjustment = 0;
+    private string scoreDirection;
+    private int finalScore = 0;
+    private bool accuracyScoreReduction;
+
+    // Score Display
     public TextMeshProUGUI greenCountText;
     public TextMeshProUGUI greenPointsText;
     public TextMeshProUGUI blueCountText;
@@ -42,36 +51,24 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI shotsText;
     public TextMeshProUGUI accuracyText;
 
-    // ---------- Start ----------
+    // Final Score Screen
+    public TextMeshProUGUI finalScoreRedText;
+    public TextMeshProUGUI finalScoreBlueText;
+    public TextMeshProUGUI finalScoreGreenText;
+    public TextMeshProUGUI finalScoreMultipliersText;
+    public TextMeshProUGUI finalScoreTallyText;
+    public TextMeshProUGUI finalScoreAccuracyText;
+    public TextMeshProUGUI finalScoreText;
+
+    // -----------------------------------------------------------------
+
+    // Start
     void Start()
     {
-        // Initialize Counts
-        greenCount = 0;
-        blueCount = 0;
-        redCount = 0;
-        powerUpCount = 0;
-        shotsFired = 0;
-        totalEnemies = 0;
-
-        // Initialize Score
-        greenPoints = 0;
-        bluePoints = 0;
-        redPoints = 0;
-        totalPoints = 0;
-        accuracy = 0;
-
-        // Set Multiplier
-        powerUpMultiplier = 2;
-        powerUpLength = 20;
-        poweredUp = false;
-        bonus = false;
-        bonusPoints = 0;
-
-        // Intialize Display
         DisplayScore();
     }
 
-    // ---------- Update ----------
+    // Update
     void Update()
     {
         if (shotsFired > 0)
@@ -80,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         if (poweredUp)
         {
-            multiplierText.text = $"X{powerUpMultiplier}";
+            multiplierText.text = $"X{multiplierValue}";
         }
         if (!poweredUp)
         {
@@ -90,75 +87,172 @@ public class GameManager : MonoBehaviour
         DisplayScore();
     }
 
-    // ---------- Scoring ----------
+    // -----------------------------------------------------------------
+
+    // Update Score
     public void UpdateScore(string enemy, int points)
     {
         // Check for Bonus
-        if (bonus)
+        if (bonusActive)
         {
-            // Multiply Score
-            points = points * powerUpMultiplier;
-
             // Track Bonus Points
-            bonusPoints = points * powerUpMultiplier;
+            bonusPoints += points;
+
+            // Multiply Score
+            points *= multiplierValue;
         }
 
-        // Score Enemy Count and Points 
+        // Update Enemy Count and Score Points 
         switch (enemy)
         {
             case "Green":
                 greenCount++;
-                greenPoints = greenPoints + points;
+                greenPoints += points;
                 break;
 
             case "Blue":
                 blueCount++;
-                bluePoints = bluePoints + points;
+                bluePoints += points;
             break;
 
             case "Red":
                 redCount++;
-                redPoints = redPoints + points;
+                redPoints += points;
             break;
 
+            // Update Multiplier Count, Set Multiplier Value, and Start Countdown
             case "Powerup":
-                powerUpCount++;
-                StartCoroutine(PowerUpCountdown());
+                multiplierCount++;
+                StartCoroutine(MultiplierCountdown());
             break;
         }     
 
-        // Add to Total Count and Total Points
+        // Update Total Count and Total Points
         totalEnemies++;
-        totalPoints = totalPoints + points;
+        totalPoints += points;
     }
 
-    // ---------- PowerUp ----------
-    IEnumerator PowerUpCountdown()
+    // Multiplier
+    IEnumerator MultiplierCountdown()
     {
         poweredUp = true;
-        bonus = true;
+        bonusActive = true;
 
         yield return new WaitForSeconds(powerUpLength);
 
-        bonus = false;
+        bonusActive = false;
         poweredUp = false;
     }
 
-    // ---------- Display ----------
+    // Display Score
     public void DisplayScore()
     {
         // Counts
-        greenCountText.text = $"{greenCount}";
-        blueCountText.text = $"{blueCount}";
-        redCountText.text = $"{redCount}";
-        hitsText.text = $"{totalEnemies}";
-        shotsText.text = $"{shotsFired}";
+        greenCountText.text = $"{greenCount} GREEN:";
+        blueCountText.text = $"{blueCount} BLUE:";
+        redCountText.text = $"{redCount} RED:";
 
         // Scores
         greenPointsText.text = $"{greenPoints}";
         bluePointsText.text = $"{bluePoints}";
         redPointsText.text = $"{redPoints}";
         scoreText.text = $"{totalPoints}";
+
+        // Accuracy
+        hitsText.text = $"{totalEnemies}";
+        shotsText.text = $"{shotsFired}";
         accuracyText.text = $"{accuracy}%";
+
+        // Calculate Final Score
+        CalculateFinalScore();
+
+        // Display Final Score
+        finalScoreGreenText.text = $"{greenCount} x {greenValue} = {greenCount * greenValue}";
+        finalScoreBlueText.text = $"{blueCount} x {blueValue} = {blueCount * blueValue}";
+        finalScoreRedText.text = $"{redCount} x {redValue} = {redCount * redValue}";
+        finalScoreMultipliersText.text = $"{multiplierCount} Multipliers - {bonusPoints} Bonus Points";
+        finalScoreTallyText.text = $"{totalEnemies} Total Targets - {totalPoints} Total Points";
+        finalScoreAccuracyText.text = $"{accuracy}% Accuracy = {accuracyAdjustment}% Score {scoreDirection}";
+        finalScoreText.text = $"Final Score = {finalScore}";
+    }
+
+    // Final Score
+    private void CalculateFinalScore()
+    {
+        // Get Accuracy Adjustment
+        CalculateAccuracyAdjustment();
+
+        // Calculate Score Reduction
+        if (accuracyScoreReduction)
+        {
+            finalScore = Convert.ToInt32(totalPoints - (totalPoints * accuracyAdjustment / 100));
+        }
+        // Set Score with no Change
+        else if (accuracyAdjustment == 0)
+        {
+            finalScore = totalPoints;
+        }
+        // Calculate Score Increase
+        else
+        {
+            finalScore = Convert.ToInt32(totalPoints + (totalPoints * accuracyAdjustment / 100));
+        }
+    }
+
+    // Accuracy
+    private void CalculateAccuracyAdjustment()
+    {
+        if (accuracy < 25)
+        {
+            accuracyAdjustment = 25;
+            scoreDirection = "Reduction";
+            accuracyScoreReduction = true;
+            accuracyText.color = Color.red;
+            finalScoreAccuracyText.color = Color.red;
+
+        }
+        if (accuracy >= 25 && accuracy < 50)
+        {
+            accuracyAdjustment = 10;
+            scoreDirection = "Reduction";
+            accuracyScoreReduction = true;
+            accuracyText.color = Color.red;
+            finalScoreAccuracyText.color = Color.red;
+
+        }
+        if (accuracy >= 50 && accuracy < 70)
+        {
+            accuracyAdjustment = 0;
+            scoreDirection = "Effect";
+            accuracyScoreReduction = false;
+            accuracyText.color = Color.white;
+            finalScoreAccuracyText.color = Color.white;
+        }
+        if (accuracy >= 70 && accuracy < 95)
+        {
+            accuracyAdjustment = 10;
+            scoreDirection = "Increase";
+            accuracyScoreReduction = false;
+            accuracyText.color = Color.green;
+            finalScoreAccuracyText.color = Color.green;
+
+        }
+        if (accuracy >= 95 && accuracy < 100)
+        {
+            accuracyAdjustment = 25;
+            scoreDirection = "Increase";
+            accuracyScoreReduction = false;
+            accuracyText.color = Color.green;
+            finalScoreAccuracyText.color = Color.green;
+
+        }
+        if (accuracy == 100)
+        {
+            accuracyAdjustment = 50;
+            scoreDirection = "Increase";
+            accuracyScoreReduction = false;
+            accuracyText.color = Color.green;
+            finalScoreAccuracyText.color = Color.green;
+        }
     }
 }

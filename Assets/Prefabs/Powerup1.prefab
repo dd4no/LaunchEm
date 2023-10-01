@@ -129,7 +129,7 @@ MonoBehaviour:
   greenPoints: 10
   bluePoints: 25
   redPoints: 50
-  multiplier: 3
+  multiplier: 4
 --- !u!114 &-1037788092424836244
 MonoBehaviour:
   m_ObjectHideFlags: 0

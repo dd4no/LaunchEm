@@ -49,6 +49,7 @@ public class Counter : MonoBehaviour
             if (gameObject.tag == "Powerup")
             {
                 gameManager.UpdateScore("Powerup", 0);
+                gameManager.multiplierValue = multiplier;
             }
 
             Destroy(gameObject);
