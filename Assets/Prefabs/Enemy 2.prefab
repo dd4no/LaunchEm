@@ -111,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23ac8d9e0f1d21044ab42710ee10b3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smokingCrater: {fileID: 2193461415144556384, guid: 2f8f74cfc8c8e0942985a870510a44aa, type: 3}
+  powerupExplosion: {fileID: 5455356595374840852, guid: 95e7c44cd7a5d4d4da4ba995b213de02, type: 3}
+  enemyExplosion: {fileID: 5020463953128232702, guid: f3701142fc47e6f42bad4f9b8db9d440, type: 3}
   greenPoints: 10
   bluePoints: 25
   redPoints: 50

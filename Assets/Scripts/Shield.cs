@@ -1,9 +1,14 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shield : MonoBehaviour
 {
+    // Effects
+    public ParticleSystem turretExplosion;
+    public ParticleSystem shieldHit;
+
     // Hit Points
     public float hitPoints = 10;
 
@@ -45,6 +50,10 @@ public class Shield : MonoBehaviour
         // Detect Enemy Shots Only
         if (collision.gameObject.tag == "EnemyFire") 
         {
+            Instantiate(shieldHit, collision.transform.position, collision.transform.rotation);
+            //shieldHit.Play();
+            Destroy(collision.gameObject);
+
             // Take Damage
             hitPoints--;
 
@@ -74,8 +83,12 @@ public class Shield : MonoBehaviour
     // End Game
     private void GameOver()
     {
-        // End Game
+        // Mark Game as Over
         gameOver = true;
+
+        // Show Effects
+        gameObject.SetActive(false);
+        turretExplosion.Play();
 
         // Hide Score Screen
         scoreScreen.gameObject.SetActive(false);
