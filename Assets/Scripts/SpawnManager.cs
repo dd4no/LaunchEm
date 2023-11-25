@@ -73,6 +73,7 @@ public class SpawnManager : MonoBehaviour
 
         // Spawn Enemy
         Instantiate(enemies[enemyIndex], spawnPosition, enemies[enemyIndex].transform.rotation);
+        SoundManager.PlaySound(SoundManager.Sound.EnemyRise);
     }
 
 
@@ -111,5 +112,6 @@ public class SpawnManager : MonoBehaviour
 
         // Spawn Powerup
         Instantiate(powerups[powerupIndex], spawnPosition, powerups[powerupIndex].transform.rotation);
+        SoundManager.PlaySound(SoundManager.Sound.PowerupMoving);
     }
 }
