@@ -2,15 +2,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Audio
-    //public AudioSource rise;
-    //public AudioSource fire;
-    //public AudioSource escape;
-    //public AudioClip rise;
-    //public AudioClip attack;
-    //public AudioClip escape;
-
-
     // Shield
     private Shield shield;
 
@@ -42,12 +33,6 @@ public class Enemy : MonoBehaviour
     {
         // Get Player Shield
         shield = GameObject.Find("Shield").GetComponent<Shield>();
-
-
-        //rise = gameObject.AddComponent<AudioSource>();
-        //fire = gameObject.AddComponent<AudioSource>();
-        //escape = gameObject.AddComponent<AudioSource>();
-
     }
 
 
@@ -75,9 +60,6 @@ public class Enemy : MonoBehaviour
     // Rise from Underground
     private void Rise()
     {
-        //rise.Play();
-        //SoundManager.PlaySound(SoundManager.Sound.EnemyRise);
-
         // Rise up
         transform.Translate(Vector3.up * Time.deltaTime * speed);
 
@@ -105,7 +87,6 @@ public class Enemy : MonoBehaviour
             var bullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
 
             SoundManager.PlaySound(SoundManager.Sound.EnemyFire);
-            //fire.Play();
 
             // Flag as Fired
             shotFired = true;
@@ -118,15 +99,13 @@ public class Enemy : MonoBehaviour
         // Indicate Escape     
         escapeNow = true;
 
-        //SoundManager.PlaySound(SoundManager.Sound.EnemyEscape);
-        //escape.Play();
-
         // Sink
         transform.Translate(Vector3.down * Time.deltaTime * speed);
 
         // Destroy at Escape Position
         if (transform.position.y < escapePosition)
         {
+            SoundManager.PlaySound(SoundManager.Sound.EnemyEscape);
             Destroy(gameObject);
         }
     }

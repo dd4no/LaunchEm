@@ -1127,6 +1127,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   shield: {fileID: 2119157101}
   launch: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  gunFire: {fileID: 8300000, guid: 6e8772b49f34d402a90016ed445d8a2f, type: 3}
   turretDestroyed: {fileID: 8300000, guid: af2b012ecebc34a91b65a0351bd46cc7, type: 3}
   barrel: {fileID: 722077483}
   shellPrefab: {fileID: 6248500974284631913, guid: d12c5cc98fb1e3c4ca205464c819b39d, type: 3}

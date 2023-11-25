@@ -10,11 +10,6 @@ public class Counter : MonoBehaviour
     public ParticleSystem enemyExplosion;
     public ParticleSystem powerupExplosion;
 
-    // Audio
-    //public AudioSource soundEffects;
-    //public AudioClip enemyDestroyed;
-    //public AudioClip powerupDestroyed;
-
     // Point Values
     public int greenPoints = 10;
     public int bluePoints = 25;
@@ -25,8 +20,8 @@ public class Counter : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        //soundEffects = gameObject.GetComponent<AudioSource>();
     }
+
 
    // Detect Hit
     private void OnCollisionEnter(Collision collision)
@@ -34,6 +29,7 @@ public class Counter : MonoBehaviour
         // Ignore Scoring on Bullets but Destroy Enemy
         if (collision.gameObject.tag == "Bullet")
         {
+            SoundManager.PlaySound(SoundManager.Sound.AltEnemyDestroyed);
             Destroy(gameObject);
             Destroy(collision.gameObject);
             return;
@@ -42,34 +38,30 @@ public class Counter : MonoBehaviour
         // Ignore Enemy Bullets and Update Appropriate Score
         if (collision.gameObject.tag != "EnemyFire")
         {
-            if (gameObject.tag != "Powerup")
-            {
-                //soundEffects.PlayOneShot(powerupDestroyed);
-            }
-            else
-            {
-            }
             // Green
             if (gameObject.tag =="Green")
             {
-                //soundEffects.PlayOneShot(enemyDestroyed);
                 gameManager.UpdateScore("Green", greenPoints);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed);
             }
             // Blue
             if (gameObject.tag == "Blue")
             {
                 gameManager.UpdateScore("Blue", bluePoints);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed);
             }
             // Red
             if (gameObject.tag == "Red")
             {
                 gameManager.UpdateScore("Red", redPoints);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed);
             }
             // Powerup
             if (gameObject.tag == "Powerup")
             {
                 gameManager.UpdateScore("Powerup", 0);
                 gameManager.multiplierValue = multiplier;
+                SoundManager.PlaySound(SoundManager.Sound.PowerupDestroyed);
             }
 
             // Destroy Shell and Enemy
@@ -79,12 +71,18 @@ public class Counter : MonoBehaviour
             // Show Effects
             if (gameObject.tag == "Powerup")
             {
+                // Powerup Explosion
                 Instantiate(powerupExplosion, transform.position, transform.rotation);
             }
             else
             {
-                Instantiate(enemyExplosion, new Vector3(transform.position.x, 0f, transform.position.z), smokingCrater.transform.rotation);
-                Instantiate(smokingCrater, new Vector3(transform.position.x, 0f, transform.position.z), smokingCrater.transform.rotation);
+                // Enemy Explosion
+                Instantiate(enemyExplosion, new Vector3(
+                    transform.position.x, 0f, transform.position.z), smokingCrater.transform.rotation);
+
+                // Smoking Crater
+                Instantiate(smokingCrater, new Vector3(
+                    transform.position.x, 0f, transform.position.z), smokingCrater.transform.rotation);
             }
         }
     }

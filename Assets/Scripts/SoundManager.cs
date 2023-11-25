@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class SoundManager
@@ -8,14 +6,19 @@ public static class SoundManager
     {
         EnemyRise,
         EnemyFire,
-        EnemyEscape
+        EnemyEscape,
+        EnemyDestroyed,
+        AltEnemyDestroyed,
+        PowerupMoving,
+        PowerupDestroyed,
+        MissedShot
     }
 
    public static void PlaySound(Sound sound)
    {
         GameObject soundGameObject = new GameObject("Sound");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
+        audioSource.PlayOneShot(GetAudioClip(sound), 0.25f);
    }
 
     private static AudioClip GetAudioClip(Sound sound)
