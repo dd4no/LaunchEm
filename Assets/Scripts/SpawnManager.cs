@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] powerups;
 
     public Shield shield;
-    public AudioSource camera;
+    public new AudioSource camera;
 
 
     // ---------- Spawn Location Ranges ----------
