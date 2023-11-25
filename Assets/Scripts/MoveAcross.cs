@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class MoveAcross : MonoBehaviour
 {
-
+    // Spawn Manger
     public SpawnManager spawnManager;
+
+    // Travel Direction and Speed
     private Vector3 direction;
     private float speed;
 
@@ -14,6 +16,7 @@ public class MoveAcross : MonoBehaviour
         direction = spawnManager.powerupDirection;
     }
 
+    // Awake
     private void Awake()
     {
         speed = Random.Range(40f, 80f);

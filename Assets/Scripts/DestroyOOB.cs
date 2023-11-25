@@ -6,11 +6,6 @@ public class DestroyOOB : MonoBehaviour
     private float left = -300f;
     private float right = 300f;
 
-    // ---------- Start ----------
-    void Start()
-    {
-        
-    }
 
     // ---------- Update ----------
     void Update()

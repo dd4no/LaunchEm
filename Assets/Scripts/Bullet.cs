@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    // Speed
     private float speed = 100f;
+
+    // Distance
     private float zRange = 200f;
+
+    // Origin
     public Transform gun;
+
+    // Direction
     private Vector3 direction;
 
     // Start

@@ -10,6 +10,11 @@ public class Counter : MonoBehaviour
     public ParticleSystem enemyExplosion;
     public ParticleSystem powerupExplosion;
 
+    // Audio
+    //public AudioSource soundEffects;
+    //public AudioClip enemyDestroyed;
+    //public AudioClip powerupDestroyed;
+
     // Point Values
     public int greenPoints = 10;
     public int bluePoints = 25;
@@ -20,12 +25,13 @@ public class Counter : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //soundEffects = gameObject.GetComponent<AudioSource>();
     }
 
    // Detect Hit
     private void OnCollisionEnter(Collision collision)
     {
-        // Ignore Scoring on Bullets
+        // Ignore Scoring on Bullets but Destroy Enemy
         if (collision.gameObject.tag == "Bullet")
         {
             Destroy(gameObject);
@@ -36,9 +42,17 @@ public class Counter : MonoBehaviour
         // Ignore Enemy Bullets and Update Appropriate Score
         if (collision.gameObject.tag != "EnemyFire")
         {
+            if (gameObject.tag != "Powerup")
+            {
+                //soundEffects.PlayOneShot(powerupDestroyed);
+            }
+            else
+            {
+            }
             // Green
             if (gameObject.tag =="Green")
             {
+                //soundEffects.PlayOneShot(enemyDestroyed);
                 gameManager.UpdateScore("Green", greenPoints);
             }
             // Blue

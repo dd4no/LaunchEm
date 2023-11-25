@@ -2,19 +2,12 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
+    // Explosion
     public ParticleSystem groundHit;
+
+    // Crater
     public GameObject crater;
 
-    // Start
-    void Start()
-    {
-    }
-
-    // Update
-    void Update()
-    {
-
-    }
 
     // Detect Hits
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +17,8 @@ public class Ground : MonoBehaviour
         {
             // Destroy Projectile
             Destroy(collision.gameObject);
-            // Create Crater
+
+            // Create Crater and Explosion
             Instantiate(groundHit, new Vector3(collision.transform.position.x, 0f, collision.transform.position.z), collision.transform.rotation);
             Instantiate(crater, new Vector3(collision.transform.position.x, 0f, collision.transform.position.z), transform.rotation);
         }

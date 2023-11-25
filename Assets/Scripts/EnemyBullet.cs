@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    // Velocity
     private float speed = 200f;
-    private Vector3 direction;
+
+    // Origin
     private GameObject turret;
+
+    // Direction
+    private Vector3 direction;
 
     // Start
     void Start()
@@ -22,6 +27,7 @@ public class EnemyBullet : MonoBehaviour
         // Move Bullet from Enemy toward Turret
         transform.Translate(speed * Time.deltaTime * direction);
 
+        // Destroy Bullet
         if (transform.position.z < 0)
         {
             Destroy(gameObject);

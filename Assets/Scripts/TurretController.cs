@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class TurretController : MonoBehaviour
 {
+    // Game Objects
     public GameManager gameManager;
     public Shield shield;
+
+    // Audio
+    private AudioSource soundEffects;
+    public AudioClip launch;
+    public AudioClip turretDestroyed;
 
     // Unit Movement Speed
     private float movementSpeed = 0.8f;
@@ -35,24 +41,31 @@ public class TurretController : MonoBehaviour
     // Start
     void Start()
     {
+        // Game Manager
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        // Audio
+        soundEffects = GetComponent<AudioSource>();
 
     }
 
     // Update
     void Update()
     {
+        // Check for Game Over
         if (!shield.gameOver)
         {
             // Rotate Turret (Left & Right Arrows)
             rotation += Input.GetAxis("Horizontal") * movementSpeed;
             rotation = Mathf.Clamp(rotation, -rotationRange, rotationRange);
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, rotation, transform.localEulerAngles.z);
+            transform.localEulerAngles = new Vector3(
+                transform.localEulerAngles.x, rotation, transform.localEulerAngles.z);
         
             // Pivot Cannon Barrel (Up & Down Arrows)
             arc += Input.GetAxis("Vertical") * movementSpeed;
             arc = Mathf.Clamp(arc, arcLimitMin, arcLimitMax);
-            barrel.transform.localEulerAngles = new Vector3(arc, transform.localEulerAngles.x, transform.localEulerAngles.x);
+            barrel.transform.localEulerAngles = new Vector3(
+                arc, transform.localEulerAngles.x, transform.localEulerAngles.x);
 
             // Show Trajectory       
             trajectory.ShowTrajectory(launchPoint.position, launchPoint.forward * force / shellMass);      
@@ -71,6 +84,7 @@ public class TurretController : MonoBehaviour
         }
         else
         {
+            soundEffects.PlayOneShot(turretDestroyed);
             gameObject.SetActive(false);
         }
     }
@@ -78,6 +92,8 @@ public class TurretController : MonoBehaviour
     // Fire Cannon
     private void Fire()
     {
+        soundEffects.PlayOneShot(launch, 1);
+
         // Load Cannon
         var projectile = Instantiate(shellPrefab, launchPoint.position, Quaternion.identity);
 

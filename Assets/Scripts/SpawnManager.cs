@@ -8,11 +8,12 @@ public class SpawnManager : MonoBehaviour
 
     public Shield shield;
 
+
     // ---------- Spawn Location Ranges ----------
 
     // X
     private float[] powerupRangeX = { -300f, 300f };
-    private float enemyRangeX = 200f;
+    private float enemyRangeX = 180f;
 
     // Y
     private float underground = -3f;
@@ -20,13 +21,15 @@ public class SpawnManager : MonoBehaviour
 
     // Z
     private float minRangeZ = 100f;
-    private float maxRangeZ = 200f;
+    private float maxRangeZ = 195f;
+
 
     // ---------- Initial Spawn Rates ----------
     private float enemyDelay = 3f;
     private float powerupDelay = 20f;
 
-    // ---------- Directions ----------
+
+    // ---------- Powerup Movement Direction ----------
     public Vector3 powerupDirection;
 
 
@@ -40,6 +43,7 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnPowerup", powerupDelay, Random.Range(10, 30));
     }
 
+
     // ---------- Update ----------
     void Update()
     {
@@ -50,6 +54,7 @@ public class SpawnManager : MonoBehaviour
         }        
     }
 
+
     // ---------- Spawn Enemy ----------
     private void SpawnEnemy()
     {
@@ -57,11 +62,19 @@ public class SpawnManager : MonoBehaviour
         int enemyIndex = Random.Range(0, enemies.Length);
 
         // Generate Random Position
-        Vector3 spawnPosition = new Vector3(Random.Range(-enemyRangeX, enemyRangeX), underground, Random.Range(minRangeZ, maxRangeZ));
+        Vector3 spawnPosition = new Vector3(
+            // X
+            Random.Range(-enemyRangeX, enemyRangeX),
+            // Y
+            underground,
+            // Z
+            Random.Range(minRangeZ, maxRangeZ)
+            );
 
         // Spawn Enemy
         Instantiate(enemies[enemyIndex], spawnPosition, enemies[enemyIndex].transform.rotation);
     }
+
 
     // ---------- Spawn Powerup ----------
     private void SpawnPowerup()
@@ -87,8 +100,14 @@ public class SpawnManager : MonoBehaviour
         int aboveGroundIndex = Random.Range(0, 3);
         
         // Generate Random Spawn Position
-        Vector3 spawnPosition = new Vector3(powerupRangeX[powerupStartIndex], aboveGroundHeights[aboveGroundIndex], Random.Range(minRangeZ, maxRangeZ));
-
+        Vector3 spawnPosition = new Vector3(
+            // X
+            powerupRangeX[powerupStartIndex], 
+            // Y
+            aboveGroundHeights[aboveGroundIndex], 
+            // Z
+            Random.Range(minRangeZ, maxRangeZ)
+            );
 
         // Spawn Powerup
         Instantiate(powerups[powerupIndex], spawnPosition, powerups[powerupIndex].transform.rotation);

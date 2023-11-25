@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,8 +5,15 @@ using UnityEngine.UI;
 public class Shield : MonoBehaviour
 {
     // Effects
+    public GameObject effects;
     public ParticleSystem turretExplosion;
     public ParticleSystem shieldHit;
+
+    // Audio
+    private AudioSource soundEffects;
+    public AudioClip shieldDamage;
+    public AudioClip shieldDestroyed;
+    public AudioClip turretDestroyed;
 
     // Hit Points
     public float hitPoints = 10;
@@ -25,13 +31,17 @@ public class Shield : MonoBehaviour
     public GameObject gameOverScreen;
     public bool gameOver;
 
+
     // Start 
     void Start()
     {
+        // Initialize Shield
         gameOver = false;
         hitPoints = 10;
         slider.value = hitPoints;
+        soundEffects = effects.GetComponent<AudioSource>();
     }
+
 
     // Update 
     void Update()
@@ -44,6 +54,7 @@ public class Shield : MonoBehaviour
         }        
     }
 
+
     // Detect Hit
     private void OnCollisionEnter(Collision collision)
     {        
@@ -51,11 +62,17 @@ public class Shield : MonoBehaviour
         if (collision.gameObject.tag == "EnemyFire") 
         {
             Instantiate(shieldHit, collision.transform.position, collision.transform.rotation);
-            //shieldHit.Play();
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject);            
 
             // Take Damage
             hitPoints--;
+
+            // Play Sound Effect
+            if(hitPoints > 0)
+            {
+                soundEffects.PlayOneShot(shieldDamage, .1f);
+            }
+
 
             // Indicate Damage on Health Bar
             slider.value = hitPoints;
@@ -73,6 +90,7 @@ public class Shield : MonoBehaviour
             }
             if (hitPoints == 0)
             {
+                soundEffects.PlayOneShot(shieldDestroyed);
                 // Hide Health Bar on Last Hit
                 slider.gameObject.SetActive(false);
                 shieldText.gameObject.SetActive(false);
@@ -80,15 +98,18 @@ public class Shield : MonoBehaviour
         }
     }
 
+
     // End Game
     private void GameOver()
     {
+        soundEffects.PlayOneShot(turretDestroyed, 1);
+
         // Mark Game as Over
         gameOver = true;
 
         // Show Effects
-        gameObject.SetActive(false);
         turretExplosion.Play();
+        gameObject.SetActive(false);
 
         // Hide Score Screen
         scoreScreen.gameObject.SetActive(false);

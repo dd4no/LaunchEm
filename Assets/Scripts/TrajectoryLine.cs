@@ -2,24 +2,13 @@ using UnityEngine;
 
 public class TrajectoryLine : MonoBehaviour
 {
+    // Line
     [SerializeField] private LineRenderer lineRenderer;
 
+    // Line Configuration
     [SerializeField, Min(3)] private int segments = 60;
-
     [SerializeField, Min(1)] private float time = 10;
 
-
-    // Start
-    void Start()
-    {
-        
-    }
-
-    // Update
-    void Update()
-    {
-        
-    }
 
     // Show Trajectory Line
     public void ShowTrajectory(Vector3 startPoint, Vector3 initialVelocity)

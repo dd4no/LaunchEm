@@ -2,22 +2,31 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Player Shield
+    // Audio
+    //public AudioSource rise;
+    //public AudioSource fire;
+    //public AudioSource escape;
+    //public AudioClip rise;
+    //public AudioClip attack;
+    //public AudioClip escape;
+
+
+    // Shield
     private Shield shield;
 
     // Movement Rate
     private float speed = 5f;
 
-    // Attack Position
+    // Attack Position Y (Above Ground)
     private float attackPosition = 2.5f;
 
     // Countdown Timer
     public int timeUntilEscape;
 
-    // Escape Flag
+    // Escape Indicator
     private bool escapeNow = false;
 
-    // Escape Position
+    // Escape Position Y (Below Ground)
     private float escapePosition = -5.0f;
 
     // Bullet Prefab
@@ -33,7 +42,14 @@ public class Enemy : MonoBehaviour
     {
         // Get Player Shield
         shield = GameObject.Find("Shield").GetComponent<Shield>();
+
+
+        //rise = gameObject.AddComponent<AudioSource>();
+        //fire = gameObject.AddComponent<AudioSource>();
+        //escape = gameObject.AddComponent<AudioSource>();
+
     }
+
 
     // Update
     void Update()
@@ -55,13 +71,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     // Rise from Underground
     private void Rise()
     {
+        //rise.Play();
+        //SoundManager.PlaySound(SoundManager.Sound.EnemyRise);
+
         // Rise up
         transform.Translate(Vector3.up * Time.deltaTime * speed);
 
-        // If at Attack Position, Freeze Position, Pause, Attack, and Initiate Escape
+        // When reaching Attack Position
         if (transform.position.y >= attackPosition)
         {
             // Freeze
@@ -84,6 +104,9 @@ public class Enemy : MonoBehaviour
             // Create Bullet
             var bullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
 
+            SoundManager.PlaySound(SoundManager.Sound.EnemyFire);
+            //fire.Play();
+
             // Flag as Fired
             shotFired = true;
         }
@@ -92,8 +115,11 @@ public class Enemy : MonoBehaviour
     // Escape Below Ground
     private void Sink()
     {
-        // Flag as Time to Escape    
+        // Indicate Escape     
         escapeNow = true;
+
+        //SoundManager.PlaySound(SoundManager.Sound.EnemyEscape);
+        //escape.Play();
 
         // Sink
         transform.Translate(Vector3.down * Time.deltaTime * speed);
