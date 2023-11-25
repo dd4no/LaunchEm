@@ -15,6 +15,8 @@ public class Ground : MonoBehaviour
         // Detect Shell Hit
         if (collision.gameObject.tag == "Shell")
         {
+            SoundManager.PlaySound(SoundManager.Sound.MissedShot);
+
             // Destroy Projectile
             Destroy(collision.gameObject);
 

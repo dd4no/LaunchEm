@@ -9,6 +9,7 @@ public class TurretController : MonoBehaviour
     // Audio
     private AudioSource soundEffects;
     public AudioClip launch;
+    public AudioClip gunFire;
     public AudioClip turretDestroyed;
 
     // Unit Movement Speed
@@ -109,6 +110,7 @@ public class TurretController : MonoBehaviour
     // Shoot Gun
     private void Shoot()
     {
+        soundEffects.PlayOneShot(gunFire, 1);
         var bullet = Instantiate(bulletPrefab, gunBarrel.position, Quaternion.identity);
     }
 }
