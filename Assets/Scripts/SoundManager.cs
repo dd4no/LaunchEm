@@ -14,11 +14,11 @@ public static class SoundManager
         MissedShot
     }
 
-   public static void PlaySound(Sound sound)
+   public static void PlaySound(Sound sound, float volume)
    {
         GameObject soundGameObject = new GameObject("Sound");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound), 0.25f);
+        audioSource.PlayOneShot(GetAudioClip(sound), volume);
    }
 
     private static AudioClip GetAudioClip(Sound sound)

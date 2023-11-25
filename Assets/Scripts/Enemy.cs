@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
             // Create Bullet
             var bullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
 
-            SoundManager.PlaySound(SoundManager.Sound.EnemyFire);
+            SoundManager.PlaySound(SoundManager.Sound.EnemyFire, 0.5f);
 
             // Flag as Fired
             shotFired = true;
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         // Destroy at Escape Position
         if (transform.position.y < escapePosition)
         {
-            SoundManager.PlaySound(SoundManager.Sound.EnemyEscape);
+            SoundManager.PlaySound(SoundManager.Sound.EnemyEscape, 0.5f);
             Destroy(gameObject);
         }
     }
