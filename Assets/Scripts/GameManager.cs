@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Point Values
-    public int greenValue = 10;
-    public int blueValue = 25;
-    public int redValue = 50;
+    private int greenValue = 100;
+    private int blueValue = 250;
+    private int redValue = 500;
     public int multiplierValue = 2;
 
     // Counters
