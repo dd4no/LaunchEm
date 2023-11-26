@@ -11,9 +11,9 @@ public class Counter : MonoBehaviour
     public ParticleSystem powerupExplosion;
 
     // Point Values
-    public int greenPoints = 10;
-    public int bluePoints = 25;
-    public int redPoints = 50;
+    public int greenPoints = 100;
+    public int bluePoints = 250;
+    public int redPoints = 500;
     public int multiplier = 2;
 
     // Start
