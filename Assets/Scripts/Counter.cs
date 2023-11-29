@@ -42,26 +42,26 @@ public class Counter : MonoBehaviour
             if (gameObject.tag =="Green")
             {
                 gameManager.UpdateScore("Green", greenPoints);
-                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.5f);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.25f);
             }
             // Blue
             if (gameObject.tag == "Blue")
             {
                 gameManager.UpdateScore("Blue", bluePoints);
-                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.5f);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.25f);
             }
             // Red
             if (gameObject.tag == "Red")
             {
                 gameManager.UpdateScore("Red", redPoints);
-                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.5f);
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDestroyed, 0.25f);
             }
             // Powerup
             if (gameObject.tag == "Powerup")
             {
                 gameManager.UpdateScore("Powerup", 0);
                 gameManager.multiplierValue = multiplier;
-                SoundManager.PlaySound(SoundManager.Sound.PowerupDestroyed, 0.5f);
+                SoundManager.PlaySound(SoundManager.Sound.PowerupDestroyed, 0.25f);
             }
 
             // Destroy Shell and Enemy
