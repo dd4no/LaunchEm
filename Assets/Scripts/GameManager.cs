@@ -6,14 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Point Values
-    public int greenValue = 10;
-    public int blueValue = 25;
-    public int redValue = 50;
+    private int greenValue = 100;
+    private int blueValue = 250;
+    private int redValue = 500;
     public int multiplierValue = 2;
 
     // Counters
-    private int greenCount =0;
-    private int blueCount =0;
+    private int greenCount = 0;
+    private int blueCount = 0;
     private int redCount = 0;
     private int multiplierCount = 0;
     private int totalEnemies = 0;
@@ -170,8 +170,8 @@ public class GameManager : MonoBehaviour
         finalScoreGreenText.text = $"{greenCount} x {greenValue} = {greenCount * greenValue}";
         finalScoreBlueText.text = $"{blueCount} x {blueValue} = {blueCount * blueValue}";
         finalScoreRedText.text = $"{redCount} x {redValue} = {redCount * redValue}";
-        finalScoreMultipliersText.text = $"{multiplierCount} Multipliers - {bonusPoints} Bonus Points";
-        finalScoreTallyText.text = $"{totalEnemies} Total Targets - {totalPoints} Total Points";
+        finalScoreMultipliersText.text = $"{multiplierCount} Multipliers -- {bonusPoints} Bonus Points";
+        finalScoreTallyText.text = $"{totalEnemies} Total Targets -- {totalPoints} Total Points";
         finalScoreAccuracyText.text = $"{accuracy}% Accuracy = {accuracyAdjustment}% Score {scoreDirection}";
         finalScoreText.text = $"Final Score = {finalScore}";
     }

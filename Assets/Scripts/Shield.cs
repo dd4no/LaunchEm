@@ -37,7 +37,7 @@ public class Shield : MonoBehaviour
     {
         // Initialize Shield
         gameOver = false;
-        hitPoints = 10;
+        hitPoints = 3;
         slider.value = hitPoints;
         soundEffects = effects.GetComponent<AudioSource>();
     }

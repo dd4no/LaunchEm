@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] powerups;
 
     public Shield shield;
+    public new AudioSource camera;
 
 
     // ---------- Spawn Location Ranges ----------
@@ -36,6 +37,8 @@ public class SpawnManager : MonoBehaviour
     // ---------- Start ----------
     void Start()
     {
+        camera = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+
         // Spawn Enemies
         InvokeRepeating("SpawnEnemy", enemyDelay, Random.Range(5,15));
 
@@ -51,6 +54,7 @@ public class SpawnManager : MonoBehaviour
         if (shield.gameOver)
         { 
             CancelInvoke();
+            camera.Stop();
         }        
     }
 
@@ -73,7 +77,7 @@ public class SpawnManager : MonoBehaviour
 
         // Spawn Enemy
         Instantiate(enemies[enemyIndex], spawnPosition, enemies[enemyIndex].transform.rotation);
-        SoundManager.PlaySound(SoundManager.Sound.EnemyRise);
+        SoundManager.PlaySound(SoundManager.Sound.EnemyRise, 0.5f);
     }
 
 
@@ -112,6 +116,6 @@ public class SpawnManager : MonoBehaviour
 
         // Spawn Powerup
         Instantiate(powerups[powerupIndex], spawnPosition, powerups[powerupIndex].transform.rotation);
-        SoundManager.PlaySound(SoundManager.Sound.PowerupMoving);
+        SoundManager.PlaySound(SoundManager.Sound.PowerupMoving, 0.5f);
     }
 }
