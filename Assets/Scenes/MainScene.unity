@@ -892,9 +892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2427bad3d2f154198520b0028da05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenValue: 10
-  blueValue: 25
-  redValue: 50
   multiplierValue: 2
   shotsFired: 0
   greenCountText: {fileID: 643826939}
