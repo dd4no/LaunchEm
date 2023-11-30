@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI finalScoreTallyText;
     public TextMeshProUGUI finalScoreAccuracyText;
     public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI bonusPointsText;
 
     // -----------------------------------------------------------------
 
@@ -92,16 +93,6 @@ public class GameManager : MonoBehaviour
     // Update Score
     public void UpdateScore(string enemy, int points)
     {
-        // Check for Bonus
-        if (bonusActive)
-        {
-            // Track Bonus Points
-            bonusPoints += points;
-
-            // Multiply Score
-            points *= multiplierValue;
-        }
-
         // Update Enemy Count and Score Points 
         switch (enemy)
         {
@@ -126,6 +117,15 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(MultiplierCountdown());
             break;
         }     
+        // Check for Bonus
+        if (bonusActive)
+        {
+            // Track Bonus Points
+            bonusPoints += points * multiplierValue - points;
+
+            // Multiply Score
+            points *= multiplierValue;
+        }
 
         // Update Total Count and Total Points
         totalEnemies++;
@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
         greenPointsText.text = $"{greenPoints}";
         bluePointsText.text = $"{bluePoints}";
         redPointsText.text = $"{redPoints}";
+        bonusPointsText.text = $"{bonusPoints}";
         scoreText.text = $"{totalPoints}";
 
         // Accuracy
