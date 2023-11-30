@@ -24,6 +24,7 @@ public class Shield : MonoBehaviour
 
     // Display Text
     public TextMeshProUGUI shieldText;
+    public TextMeshProUGUI shieldDestroyedText;
     public TextMeshProUGUI gameOverText;
 
     // End of Game
@@ -37,7 +38,7 @@ public class Shield : MonoBehaviour
     {
         // Initialize Shield
         gameOver = false;
-        hitPoints = 3;
+        hitPoints = 10;
         slider.value = hitPoints;
         soundEffects = effects.GetComponent<AudioSource>();
     }
@@ -90,10 +91,11 @@ public class Shield : MonoBehaviour
             }
             if (hitPoints == 0)
             {
+                // Destroy Sheild
                 soundEffects.PlayOneShot(shieldDestroyed);
-                // Hide Health Bar on Last Hit
                 slider.gameObject.SetActive(false);
                 shieldText.gameObject.SetActive(false);
+                shieldDestroyedText.gameObject.SetActive(true);
             }
         }
     }
