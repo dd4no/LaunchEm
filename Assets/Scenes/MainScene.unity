@@ -2537,7 +2537,7 @@ MonoBehaviour:
   - {fileID: 3501649083150792727, guid: 2a337b52eb2b11d44a8b601b7e02f4f9, type: 3}
   - {fileID: 4628579036975839598, guid: 35c58360a1e59584d9ec25cdf5aaf934, type: 3}
   shield: {fileID: 2119157101}
-  camera: {fileID: 0}
+  mainCamera: {fileID: 0}
   powerupDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &571137639
 GameObject:
