@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
         // Move Bullet Forward from Gun Barrel in Direction when Fired
         transform.Translate(speed * Time.deltaTime * direction);
 
+        // Destroy when out of bounds
         if (transform.position.z > zRange)
         {
             Destroy(gameObject);

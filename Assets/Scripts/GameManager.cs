@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,13 +62,23 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI bonusPointsText;
 
-    // -----------------------------------------------------------------
+    // Script References
+    SpawnManager spawnMgrScript;
+    Shield shieldScript;
+
+    // Objects
+    public GameObject turret;
+    public GameObject scoreScreen;
+    public GameObject startMenu;
+
 
     // Start
     void Start()
     {
-        DisplayScore();
+        spawnMgrScript = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
+        shieldScript = GameObject.Find("Shield").GetComponent<Shield>();
     }
+
 
     // Update
     void Update()
@@ -88,7 +99,6 @@ public class GameManager : MonoBehaviour
         DisplayScore();
     }
 
-    // -----------------------------------------------------------------
 
     // Update Score
     public void UpdateScore(string enemy, int points)
@@ -131,6 +141,7 @@ public class GameManager : MonoBehaviour
         totalEnemies++;
         totalPoints += points;
     }
+    
 
     // Multiplier
     IEnumerator MultiplierCountdown()
@@ -143,6 +154,7 @@ public class GameManager : MonoBehaviour
         bonusActive = false;
         poweredUp = false;
     }
+
 
     // Display Score
     public void DisplayScore()
@@ -177,6 +189,7 @@ public class GameManager : MonoBehaviour
         finalScoreText.text = $"Final Score = {finalScore}";
     }
 
+
     // Final Score
     private void CalculateFinalScore()
     {
@@ -199,6 +212,7 @@ public class GameManager : MonoBehaviour
             finalScore = Convert.ToInt32(totalPoints + (totalPoints * accuracyAdjustment / 100));
         }
     }
+
 
     // Accuracy
     private void CalculateAccuracyAdjustment()
@@ -255,5 +269,23 @@ public class GameManager : MonoBehaviour
             accuracyText.color = Color.green;
             finalScoreAccuracyText.color = Color.green;
         }
+    }
+
+
+    // Start Game
+    public void StartGame()
+    {
+        startMenu.gameObject.SetActive(false);
+        scoreScreen.gameObject.SetActive(true);
+        turret.gameObject.SetActive(true);
+        spawnMgrScript.StartSpawning();
+        DisplayScore();
+    }
+
+
+    // Restart Game
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
