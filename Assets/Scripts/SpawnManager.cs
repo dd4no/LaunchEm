@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // ---------- Spawn Arrays ----------
+    // Spawn Arrays
     public GameObject[] enemies;
     public GameObject[] powerups;
 
+    // Game Objects
     public Shield shield;
-    public new AudioSource camera;
+    public GameObject mainCamera;
+    private AudioSource music;
 
 
-    // ---------- Spawn Location Ranges ----------
-
+    // Spawn Location Ranges
     // X
     private float[] powerupRangeX = { -300f, 300f };
     private float enemyRangeX = 180f;
@@ -25,19 +26,39 @@ public class SpawnManager : MonoBehaviour
     private float maxRangeZ = 195f;
 
 
-    // ---------- Initial Spawn Rates ----------
+    // Initial Spawn Rates 
     private float enemyDelay = 3f;
     private float powerupDelay = 20f;
 
 
-    // ---------- Powerup Movement Direction ----------
+    // Powerup Movement Direction 
     public Vector3 powerupDirection;
 
 
-    // ---------- Start ----------
+    // Start 
     void Start()
     {
-        camera = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        // Get Audio Source for Background Music
+        music = mainCamera.GetComponent<AudioSource>();
+    }
+
+
+    // Update
+    void Update()
+    {
+        // Stop Spawning when Game Over
+        if (shield.gameOver)
+        { 
+            CancelInvoke();
+            music.Stop();
+        }        
+    }
+
+    // Intialize Spawning
+    public void StartSpawning()
+    {
+        // Start Music
+        music.Play();
 
         // Spawn Enemies
         InvokeRepeating("SpawnEnemy", enemyDelay, Random.Range(5,15));
@@ -46,20 +67,7 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnPowerup", powerupDelay, Random.Range(10, 30));
     }
 
-
-    // ---------- Update ----------
-    void Update()
-    {
-        // Stop Spawning when Game Over
-        if (shield.gameOver)
-        { 
-            CancelInvoke();
-            camera.Stop();
-        }        
-    }
-
-
-    // ---------- Spawn Enemy ----------
+    // Spawn Enemy 
     private void SpawnEnemy()
     {
         // Generate Random Enemy
@@ -81,7 +89,7 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    // ---------- Spawn Powerup ----------
+    // Spawn Powerup 
     private void SpawnPowerup()
     {
         // Generate Random Powerup
