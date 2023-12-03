@@ -5,7 +5,7 @@ public class MoveAcross : MonoBehaviour
     // Spawn Manger
     public SpawnManager spawnManager;
 
-    // Travel Direction and Speed
+    // Movement Direction and Speed
     private Vector3 direction;
     private float speed;
 

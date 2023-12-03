@@ -40,6 +40,11 @@ public class SpawnManager : MonoBehaviour
     {
         // Get Audio Source for Background Music
         music = mainCamera.GetComponent<AudioSource>();
+        // Spawn Enemies
+        InvokeRepeating("SpawnEnemy", enemyDelay, Random.Range(5,15));
+
+        // Spawn Powerups
+        InvokeRepeating("SpawnPowerup", powerupDelay, Random.Range(10, 30));
     }
 
 
@@ -49,11 +54,6 @@ public class SpawnManager : MonoBehaviour
         // Stop Spawning when Game Over
         if (shield.gameOver)
         { 
-            CancelInvoke();
-            music.Stop();
-        }        
-    }
-
     // Intialize Spawning
     public void StartSpawning()
     {
@@ -66,6 +66,11 @@ public class SpawnManager : MonoBehaviour
         // Spawn Powerups
         InvokeRepeating("SpawnPowerup", powerupDelay, Random.Range(10, 30));
     }
+            CancelInvoke();
+            music.Stop();
+        }        
+    }
+
 
     // Spawn Enemy 
     private void SpawnEnemy()

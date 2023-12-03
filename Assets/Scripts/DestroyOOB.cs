@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class DestroyOOB : MonoBehaviour
 {
-    // ---------- Boundries ----------
+    // Boundries
     private float left = -300f;
     private float right = 300f;
 
 
-    // ---------- Update ----------
+    // Update
     void Update()
     {
         if (transform.position.x < left)

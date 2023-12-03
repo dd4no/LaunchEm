@@ -86,9 +86,10 @@ public class Enemy : MonoBehaviour
             // Create Bullet
             var bullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
 
+            // Play Sound Effecdt
             SoundManager.PlaySound(SoundManager.Sound.EnemyFire, 0.5f);
 
-            // Flag as Fired
+            // Indicate Bullet Fired
             shotFired = true;
         }
     }
@@ -96,13 +97,13 @@ public class Enemy : MonoBehaviour
     // Escape Below Ground
     private void Sink()
     {
-        // Indicate Escape     
+        // Indicate Escape Time    
         escapeNow = true;
 
         // Sink
         transform.Translate(Vector3.down * Time.deltaTime * speed);
 
-        // Destroy at Escape Position
+        // Destroy and Play Sound Effect when reaching Escape Position
         if (transform.position.y < escapePosition)
         {
             SoundManager.PlaySound(SoundManager.Sound.EnemyEscape, 0.5f);
