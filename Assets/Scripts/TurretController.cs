@@ -77,8 +77,8 @@ public class TurretController : MonoBehaviour
                 Fire();
             }
 
-            // Shoot Gun (Left Alt)
-            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            // Shoot Gun (Left Ctrl)
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 Shoot();
             }

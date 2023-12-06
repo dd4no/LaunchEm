@@ -3913,7 +3913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Powerups
+  m_text: 'Powerups:
 
     Appear at random intervals
 
