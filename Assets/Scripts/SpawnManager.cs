@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     // Spawn Location Ranges
     // X
     private float[] powerupRangeX = { -300f, 300f };
-    private float enemyRangeX = 180f;
+    private float enemyRangeX = 140f;
 
     // Y
     private float underground = -3f;
